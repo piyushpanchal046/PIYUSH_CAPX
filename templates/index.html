@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="min-vh-100 ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INDEX</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!--    for bootstrap icons -->
+
+</head>
+<body class="m-2 d-flex flex-column min-vh-100 " >
+{% block main %}
+    <header class=" container-fluid bg-light ">
+        <div class="navbar ">
+             <a class="navbar-brand" href="/">
+                  <img src="{{url_for('static',filename='logo.jpg') }}" alt="Logo" width="50" height="50" class="d-inline-block align-text-middle">
+                  CAPX Portfolio Tracker
+             </a>
+        <!-- navbar -->
+              <div class="mt-1 mt-md-2 nav nav-pills nav-justified-end">
+                     <a class="nav-link " aria-current="page" href="/">Home</a>
+                     <a class="nav-link " href="/list">My List</a>
+                     <a class="nav-link" href="{{url_for('static', filename='Piyush_Panchal_Resume.pdf')}}" download>Resume</a>
+
+              </div>
+        </div>
+    </header>
+
+
+    <main class="m-3">
+        <div class="table-responsive d-flex" >
+    <table class="table table-hover ">
+    <thead>
+          <tr>
+                  <th scope="col"   class="bg bg-primary "                                   style="min-width: 40px; position: sticky; left: 0; z-index:1; " >#</th>
+                  <th scope="col"   class="text-center align-middle "     style="min-width: 100px; max-width:150px; position: sticky; left: 40px; z-index:1; pl-3;" >Ticker</th>
+                  <th scope="col"   class="text-center align-middle "                        ></th>
+                  <th scope="col"   class="text-center align-middle  "     style="min-width: 120px;  pl-3;" >Name</th>
+<!--                <th scope="col"   class="bg bg-white  "                                     style=" position: sticky; left: {{width}}px; z-index:1; pl-3;" >Coin</th>-->
+
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="Current Price" >PRICE</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="Price at which a stock begins trading when the market opens for the day" >T.O.P</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="24H % change in the price " >%Δ</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="24H Change in Price" >PRICE Δ </th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px;  " data-bs-toggle="tooltip" data-bs-placement="top" title="Highest price reached in the past 24 hours" >24H <i class="bi bi-arrow-up text-success fs-5 "></i></th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="Lowest price reached in the past 24 hours" >24H <i class="bi bi-arrow-down text-danger fs-5"></i></th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="Price at which a stock last traded at the end of the previous trading session" >P.C.P</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="BUY/SELL to add stock to portfolio list" >BUY/SELL</th>
+
+          </tr>
+  </thead>
+  <tbody id="jsdata">
+
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+    </main>
+
+
+
+
+
+<!-- Modal -->
+
+
+<div id="models"> </div>
+
+<script src="{{ url_for('static', filename='info.js') }}"> </script>
+
+{% endblock %}
+
+<footer class="container position-relative bottom-0 start-0   pt-4 pb-2 pt-md-5 pb-md-4 mt-auto ">
+  <div class="container px-4 px-md-3 text-body-secondary">
+    <div class="row">
+
+      <div class="col-lg-3 col-12 mb-3">
+        <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="/">
+         <img src="{{url_for('static',filename='logo.jpg') }} " alt="Logo" width="40" height="40" class="d-block me-2 ">
+          <span class="fs-5">Piyush Panchal</span>
+        </a>
+        <div class="row small">
+            <div class="mb-2">Hello to the world of web development </div>
+          <div class="mb-2">Let's learn and build together.</div>
+          <div class="mb-2">Currently v0.1</div>
+        </div>
+      </div>
+
+<!-- linkes   -->
+      <div class="col-6 col-md-4 col-lg-2 offset-lg-1 mb-3">
+        <h4>Links</h4>
+        <div class="row ">
+          <div class="mb-2"><a href="/">Home</a></div>
+          <div class="mb-2"><a href="/list">My List</a></div>
+          <div class="mb-2"><a href="{{url_for('static', filename='Piyush_Panchal_Resume.pdf')}}" download>Resume</a></div>
+        </div>
+      </div>
+
+<!-- Social Media -->
+      <div class="col-6 col-md-4 col-lg-3 mb-3">
+        <h5>Social Media</h5>
+        <div class="row">
+          <div class="mb-2"><a href="https://twitter.com/PiyushPanchal46" target="_blank" rel="noopener noreferrer">Twitter</a></div>
+          <div class="mb-2"><a href="https://www.facebook.com/profile.php?id=100076505829213" target="_blank" rel="noopener noreferrer">Facebook</a></div>
+          <div class="mb-2"><a href="https://www.linkedin.com/in/piyush-panchal-b3435a289" target="_blank" rel="noopener noreferrer">Linkedin</a></div>
+          <div class="mb-2"> <a href="https://www.youtube.com/@piyushpanchal046" target="_blank" rel="noopener noreferrer">Youtube</a> </div>
+        </div>
+      </div>
+
+<!-- Projects -->
+      <div class="col-6 col-md-4 col-lg-2 mb-3">
+        <h5>Projects</h5>
+        <div class="row"> <!-- target="_blank" is used to open link in window/tab          -->
+          <div class="mb-2 fs-6 "><a href="https://my-portfolio-nfgs.onrender.com" target="_blank" >Portfolio website</a></div>
+          <div class="mb-2 fs-6 "><a href="https://tobo.onrender.com/" target="_blank" >Todo website</a></div>
+          <div class="mb-2 fs-6 "><a href="/" target="_blank" >Crypto website</a></div>  <!-- no link -->
+          <div class="mb-2 fs-5 "><a href="#" target="_blank" >  More Soon </a> </div>
+         </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+<!-- tooltip script-->
+<script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+</script>
+</body>
+</html>

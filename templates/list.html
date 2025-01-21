@@ -1,0 +1,112 @@
+{% extends "index.html" %}
+
+{% block main %}
+
+<header class=" container-fluid bg-light ">
+        <div class="navbar ">
+             <a class="navbar-brand" href="/">
+                  <img src="{{url_for('static',filename='logo.jpg') }}" alt="Logo" width="50" height="50" class="d-inline-block align-text-middle">
+                  CAPX Portfolio Tracker
+             </a>
+        <!-- navbar -->
+              <div class="mt-1 mt-md-2 nav nav-pills nav-justified-end">
+                     <a class="nav-link " aria-current="page" href="/">Home</a>
+                     <a class="nav-link " href="/list">My List</a>
+                     <a class="nav-link" href="{{url_for('static', filename='Piyush_Panchal_Resume.pdf')}}" download>Resume</a>
+
+              </div>
+        </div>
+    </header>
+
+<!-- average coin detail-->
+<div class="row  mt-3 mx-2 justify-content-around text-center align-middle">
+
+      <div class=" col col-sm-5 col-md-3 col-lg-2 overflow-hidden border border-danger border-2 m-1 mt-auto" style="border-radius: .5rem;">
+          <div class="col" > <h5 id="invested_amount">  </h5> </div>
+           <div class="col"> Holdings Value</div>
+      </div>
+
+    <div class=" col col-sm-5 col-md-3 col-lg-2 overflow-hidden border border-danger border-2 m-1 mt-auto " style="border-radius: .5rem;">
+          <div class="col" > <h5> <!-- Button trigger modal --> <button type="button" class="col border-0 btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#exampleModalPortfolio_distribution"   >Portfolio distribution</button>  </h5> </div>
+          <div class="col"> <i class="bi bi-arrow-up fs-4 "></i> Portfolio distribution</div>
+    </div>
+
+    <div class=" col col-sm-5 col-md-3 col-lg-2 overflow-hidden border border-danger border-2 m-1 mt-auto "  id="top_stocks"  style="border-radius: .5rem;">
+
+    </div>
+
+
+</div>
+
+
+
+
+<main class=" m-3">
+        main
+        <div class="table-responsive d-flex" >
+    <table class="table table-hover ">
+    <thead>
+          <tr>
+                  <th scope="col"   class="bg bg-primary "                                   style="min-width: 40px; position: sticky; left: 0; z-index:1; " >#</th>
+                  <th scope="col"   class="text-center align-middle "     style="min-width: 100px; max-width:150px; position: sticky; left: 40px; z-index:1; pl-3;" >Ticker</th>
+                  <th scope="col"   class="text-center align-middle "                        ></th>
+                  <th scope="col"   class="text-center align-middle  "     style="min-width: 120px; pl-3;" >Name</th>
+
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; " data-bs-toggle="tooltip" data-bs-placement="top" title="Current Price" >PRICE</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >BUY PRICE</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >% PROFIT</th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >PROFIT </th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >INVESTED </th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >QUANTITY </th>
+                  <th scope="col"   class="text-center align-middle "                        style=" min-width: 90px; "  >BUY/SELL</th>
+          </tr>
+  </thead>
+  <tbody id="jsdata">
+
+  </tbody>
+</table>
+
+
+
+
+
+
+</div>
+
+    </main>
+
+
+<div id="models"> </div>
+
+<!-- script for chart -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<script src="{{ url_for('static', filename='list.js') }}"> </script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalPortfolio_distribution" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                              <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                  <div class="modal-header">
+                                                                      <div class="d-flex row ">
+                                                                              <div class="col d-flex  align-items-center ">
+                                                                                  <h5>Portfolio distribution </h5>
+                                                                              </div>
+                                                                      </div>
+                                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                  </div>
+                                                                  <div class="modal-body">
+                                                                      <canvas id="myChart" style="width:100%; min-width:350px; max-width:600px"></canvas>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+
+
+
+
+
+
+
+{% endblock %}
