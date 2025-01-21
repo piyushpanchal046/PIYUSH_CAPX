@@ -4,32 +4,30 @@ from api import Stock_Symbol,profite_calculate
 from models import db,Buysell
 from buy_sell_avg import average_buy_price, average_sell_price
 
-app=Flask(__name__)
 
-def create_app():
-    app = Flask(__name__)
+
+app = Flask(__name__)
 
     # Flask configuration
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 
     # Initialize database
-    db.init_app(app)
+db.init_app(app)
+with app.app_context():
+    db.create_all()
 
-    with app.app_context():
-        db.create_all()
-
-    @app.route("/")
-    def home():
+@app.route("/")
+def home():
         return render_template("index.html")
 
-    @app.route("/list")
-    def list():
+@app.route("/list")
+def list():
             return render_template("list.html")
 
 
 
-    @app.route("/profit_list", methods=['POST'])
-    def profit_list():
+@app.route("/profit_list", methods=['POST'])
+def profit_list():
         list = Buysell.query.order_by(Buysell.ticker.asc()).all()
         my_list = profite_calculate(list)
         return jsonify(my_list)
@@ -37,8 +35,8 @@ def create_app():
 
 
 
-    @app.route("/<string:task>/<string:id2>", methods=['POST'])
-    def buy(task,id2):
+@app.route("/<string:task>/<string:id2>", methods=['POST'])
+def buy(task,id2):
         if request.method == 'POST':
             stock_list = {'AAPL':"APPLE INC", 'MSFT':"MICROSOFT CORP" , 'AMZN': "AMAZON.COM INC" , 'GOOGL': "ALPHABET INC-CL A" , 'META': "META PLATFORMS INC-CLASS A", 'TSLA':"TESLA INC", 'NVDA': "NVIDIA CORP" , 'GS': "GOLDMAN SACHS GROUP INC", 'V':"VISA INC-CLASS A SHARES" , 'JNJ': "JOHNSON & JOHNSON"}
 
@@ -83,14 +81,13 @@ def create_app():
                     return redirect("/list")
         return redirect('/')
 
-    @app.route("/update", methods=['POST'])
-    def update():
+@app.route("/update", methods=['POST'])
+def update():
         return jsonify(Stock_Symbol())
 
-  # Create tables if they don't exist
-    return app
 
 if __name__ == "__main__":
-    app = create_app()
-    # app.run(debug=True)
-    app.run(host='0.0.0.0', port=8000)
+    # with app.app_context():
+    #     db.create_all()
+    app.run(debug=True)
+    # app.run(host='0.0.0.0', port=8000)
