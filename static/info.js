@@ -1,4 +1,5 @@
 function start(){
+        const activeModal = document.querySelector('.modal.show');
         const xml= new XMLHttpRequest();
         xml.open("post",'/update',true)
         xml.setRequestHeader('Content-Type',"application/json")
@@ -175,8 +176,11 @@ function start(){
 
                 }
             )
-            document.getElementById("jsdata").innerHTML= list
-            document.getElementById("models").innerHTML= models
+            if (!activeModal) {
+            document.getElementById("jsdata").innerHTML = list; // Update the table
+            document.getElementById("models").innerHTML = models; // Update the modals list
+            console.log("Modal is NOT active")
+            }
         }
 
         xml.send()
